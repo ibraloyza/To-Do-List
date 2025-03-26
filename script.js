@@ -2,7 +2,8 @@ const todo_form = document.querySelector('form');
 const todo_input = document.getElementById('todo-input');
 const todo_listUl = document.getElementById('todo-list');
 
-const all_todos= [];
+const all_todos= getTodos();
+updateTodoList();
 console.log(all_todos);
 
 
@@ -72,8 +73,11 @@ function saveTodos(){
   const todoJson = JSON.stringify(all_todos);
   localStorage.setItem("todo",todoJson);
 }
-
-
+// get list item in the localstorage
+function getTodos(){
+  const todos =  localStorage.getItem("todo")||[];
+  return JSON.parse(todos);
+}
 
 
 
