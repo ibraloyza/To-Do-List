@@ -16,6 +16,7 @@ function addTodo(){
   if (todoText.length > 0) {
     all_todos.push(todoText);
     updateTodoList();
+    saveTodos();
     todo_input.value = "";
   }
 }
@@ -66,6 +67,13 @@ function createTodoItem(todo,todoIndex){
   `
   return todoLi;
 }
+
+function saveTodos(){
+  const todoJson = JSON.stringify(all_todos);
+  localStorage.setItem("todo",todoJson);
+}
+
+
 
 
 
