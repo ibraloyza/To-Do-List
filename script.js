@@ -2,7 +2,7 @@ const todo_form = document.querySelector('form');
 const todo_input = document.getElementById('todo-input');
 const todo_listUl = document.getElementById('todo-list');
 
-const all_todos= getTodos();
+let all_todos= getTodos();
 updateTodoList();
 console.log(all_todos);
 
@@ -66,8 +66,22 @@ function createTodoItem(todo,todoIndex){
           </svg>
         </button>
   `
+  const deleteButton = todoLi.querySelector(".delete-btn");
+
+  deleteButton.addEventListener("click",()=>{
+    deleteTodoItem(todoIndex);
+  })
   return todoLi;
 }
+
+// delete item list
+
+function deleteTodoItem(todoIndex){
+  all_todos = all_todos.filter((_, i) => i !== todoIndex);
+  saveTodos();
+  updateTodoList();
+}
+
 
 function saveTodos(){
   const todoJson = JSON.stringify(all_todos);
